@@ -1,6 +1,9 @@
 let HDWalletProvider = require("truffle-hdwallet-provider");
 let Web3 = require("web3");
 
+const fiftyGwei = 50000000000;
+
+
 let provider = (endpoint) => {
     if (process.env.HDWALLET_MNEMONIC) {
         return new HDWalletProvider(process.env.HDWALLET_MNEMONIC, endpoint);
@@ -26,9 +29,19 @@ let truffleOptions = {
             network_id: "*" // Any network ID
         },
         kovan: {
-            gasPrice: 500000000,
+            gasPrice: fiftyGwei,
             provider: () => provider("https://kovan.infura.io"),
             network_id: "42" // Kovan network ID
+        },
+        rinkeby: {
+            gasPrice: fiftyGwei,
+            provider: () => provider("https://rinkeby.infura.io"),
+            network_id: "4" // Rinkeby network ID
+        },
+        ropsten: {
+            gasPrice: fiftyGwei,
+            provider: () => provider("https://ropsten.infura.io"),
+            network_id: "3" // Ropsten network ID
         },
     },
     mocha: {
